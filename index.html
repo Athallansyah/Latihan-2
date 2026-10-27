@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>50 Soal Matematika TKA Set 2 + Pembahasan</title>
+<style>
+:root{--bg:#fff;--fg:#1a1a1a;--mut:#666;--card:#f5f6f8;--bd:#d8dbe0;--ok:#1a7f4b;--okb:#e3f5ea;--no:#b3261e;--nob:#fbe9e7;--ac:#2456d6}
+@media(prefers-color-scheme:dark){:root{--bg:#15171a;--fg:#eceef1;--mut:#9aa0a8;--card:#1f2226;--bd:#33373d;--ok:#5fd394;--okb:#16301f;--no:#ff8a80;--nob:#3a1c19;--ac:#7aa2ff}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:760px;margin:0 auto;padding:20px 16px 60px}
+h1{font-size:1.5rem;margin:0 0 4px}
+.sub{color:var(--mut);margin:0 0 16px}
+.bar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.bar button{border:1px solid var(--bd);background:var(--card);color:var(--fg);padding:6px 14px;border-radius:999px;cursor:pointer;font:inherit;font-size:.9rem}
+.bar button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+.q{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px 16px;margin-bottom:14px}
+.q h2{font-size:1rem;margin:0 0 8px;display:flex;gap:8px;align-items:center}
+.tag{font-size:.72rem;padding:2px 9px;border-radius:999px;border:1px solid var(--bd);color:var(--mut);font-weight:600}
+.o{display:block;width:100%;text-align:left;margin:6px 0;padding:8px 12px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--fg);font:inherit;cursor:pointer}
+.o:hover{border-color:var(--ac)}
+.o.ok{background:var(--okb);border-color:var(--ok)}
+.o.no{background:var(--nob);border-color:var(--no)}
+.ex{display:none;margin-top:10px;padding:10px 12px;border-left:3px solid var(--ac);background:var(--bg);border-radius:4px;font-size:.95rem}
+.q.done .ex{display:block}
+</style>
+</head>
+<body>
+<main>
+<h1>50 Soal Matematika TKA — Set 2</h1>
+<p class="sub">Soal baru dengan tingkat Mudah, Sedang, Sulit, dan Sangat Sulit (diacak). Urutan pilihan jawaban diacak setiap halaman dimuat. Klik jawaban untuk melihat pembahasan.</p>
+<div class="bar" id="bar"></div>
+<div id="list"></div>
+</main>
+<script>
+var L={M:"Mudah",S:"Sedang",H:"Sulit",X:"Sangat Sulit"};
+// [level, soal, opsi (dipisah |), indeks jawaban benar (mulai 0), pembahasan]
+var D=[
+["M","Nilai x yang memenuhi 3(2x − 1) = 2x + 5 adalah ...","1|2|3|4|5",1,"6x − 3 = 2x + 5 → 4x = 8 → x = 2."],
+["S","Persamaan kuadrat dengan akar 2 dan −3 adalah ...","x²−x−6=0|x²+x−6=0|x²+x+6=0|x²−5x−6=0|x²+5x+6=0",1,"Jumlah akar = −1, hasil kali = −6 → x² + x − 6 = 0."],
+["H","Dari 5 pria dan 4 wanita dipilih panitia 3 orang dengan minimal 1 wanita. Banyak cara = ...","64|70|74|80|84",2,"Total C(9,3) = 84; tanpa wanita C(5,3) = 10; 84 − 10 = 74."],
+["S","lim(x→2) (x² − 4)/(x² − 3x + 2) = ...","1|2|3|4|∞",3,"Faktorkan: (x−2)(x+2)/((x−1)(x−2)) = (x+2)/(x−1) → 4/1 = 4."],
+["X","lim(n→∞) (1 + 2/n)ⁿ = ...","e|e²|2e|2|∞",1,"Bentuk (1 + k/n)ⁿ → eᵏ. Dengan k = 2 hasilnya e²."],
+["M","25^(½) + 8^(⅓) = ...","5|6|7|8|9",2,"√25 = 5 dan ∛8 = 2, jumlah 7."],
+["H","f(x) = x³ − 12x + 5. Nilai minimum lokal f adalah ...","−27|−11|−5|5|21",1,"f′ = 3x² − 12 = 0 → x = ±2. f″ = 6x > 0 di x = 2 (minimum). f(2) = 8 − 24 + 5 = −11."],
+["S","f(x) = x² sin x. Nilai f′(π) = ...","−π²|−2π|0|π²|2π",0,"f′ = 2x sin x + x² cos x. Di x = π: 0 + π²·(−1) = −π²."],
+["X","∫₀^π x sin x dx = ...","π/2|π|2π|0|2",1,"Parsial: −x cos x + sin x dari 0 ke π = π + 0 = π."],
+["S","²log 12 − ²log 3 = ...","1|2|3|4|9",1,"²log(12/3) = ²log 4 = 2."],
+["H","Jumlah semua penyelesaian sin x + cos x = 1 pada 0 ≤ x ≤ 2π adalah ...","3π/2|2π|5π/2|3π|7π/2",2,"√2 sin(x + π/4) = 1 → x + π/4 = π/4, 3π/4, 9π/4 → x = 0, π/2, 2π. Jumlah 5π/2."],
+["M","Luas trapesium dengan sisi sejajar 8 cm dan 12 cm serta tinggi 5 cm = ... cm²","40|45|50|55|60",2,"½(8 + 12)·5 = 50."],
+["S","a = (2, 3) dan b = (4, −1). Nilai a · b = ...","3|4|5|6|7",2,"2·4 + 3·(−1) = 8 − 3 = 5."],
+["H","Jumlah deret tak hingga 6 + 4 + 8/3 + ... = ...","12|15|18|20|24",2,"a = 6, r = 2/3: S = 6/(1 − 2/3) = 18."],
+["X","Banyak bilangan genap 4 angka berbeda yang dapat disusun dari angka 1–7 = ...","240|300|360|420|840",2,"Angka satuan 2, 4, atau 6 (3 cara); tiga angka lain dari 6 sisa: 6·5·4 = 120. Total 3·120 = 360."],
+["S","Jari-jari lingkaran x² + y² − 6x + 4y − 12 = 0 adalah ...","3|4|5|6|7",2,"(x−3)² + (y+2)² = 12 + 9 + 4 = 25 → r = 5."],
+["H","Volume benda putar daerah y = √x, 0 ≤ x ≤ 4, diputar 360° terhadap sumbu X = ...","4π|8π|16π|32π|64π",1,"V = π∫₀⁴ x dx = π·[x²/2]₀⁴ = 8π."],
+["M","Modus data 3, 4, 4, 5, 5, 5, 6 adalah ...","4|4,5|5|5,5|6",2,"Angka 5 muncul paling sering (3 kali)."],
+["S","∫₁⁴ 3√x dx = ...","10|12|14|16|18",2,"3·(2/3)x^(3/2) = 2x^(3/2). 2(8 − 1) = 14."],
+["X","Jumlah kuadrat semua akar x⁴ − 5x² + 4 = 0 adalah ...","5|8|10|12|16",2,"(x²−1)(x²−4) = 0 → x = ±1, ±2. Kuadrat: 1 + 1 + 4 + 4 = 10."],
+["H","∫₀^(π/2) sin²x dx = ...","π/8|π/4|π/2|π|1/2",1,"sin²x = (1 − cos 2x)/2 → [x/2 − sin 2x/4] dari 0 ke π/2 = π/4."],
+["S","Dua dadu dilempar. Peluang jumlah mata ≥ 10 = ...","1/12|1/9|1/6|5/36|1/4",2,"Pasangan: (4,6), (5,5), (6,4), (5,6), (6,5), (6,6) = 6 dari 36 = 1/6."],
+["H","lim(x→0) x·tan 2x / (1 − cos 4x) = ...","1/8|1/4|1/2|1|2",1,"Untuk x kecil: tan 2x ≈ 2x dan 1 − cos 4x = 2sin²2x ≈ 8x². Hasil 2x²/8x² = 1/4."],
+["M","Persamaan garis bergradien 2 yang melalui (0, −3) adalah ...","y = 2x + 3|y = 2x − 3|y = −2x − 3|y = −3x + 2|y = 3x − 2",1,"y = mx + c dengan m = 2 dan c = −3."],
+["X","Nilai minimum f(x) = 5 sin x + 12 cos x adalah ...","−17|−13|−7|−5|0",1,"Amplitudo = √(25 + 144) = 13, sehingga minimum −13."],
+["S","cos 60° · sin 30° + tan 45° = ...","1|5/4|3/2|7/4|2",1,"½·½ + 1 = 5/4."],
+["H","P(x) = 2x³ − 3x² + ax − 5 bersisa 7 jika dibagi (x − 2). Nilai a = ...","2|3|4|5|6",2,"P(2) = 16 − 12 + 2a − 5 = 2a − 1 = 7 → a = 4."],
+["S","Suku ke-8 barisan geometri 3, 6, 12, ... adalah ...","192|256|384|768|1.536",2,"U₈ = 3·2⁷ = 384."],
+["X","f(x) = ax² + bx + c melalui (0, 3) dengan titik puncak (1, 2). Nilai f(3) = ...","4|5|6|7|8",2,"c = 3; −b/2a = 1 → b = −2a; f(1) = a + b + 3 = 2 → a = 1, b = −2. f(3) = 9 − 6 + 3 = 6."],
+["H","Luas daerah yang dibatasi y = x² − 4x dan sumbu X adalah ...","16/3|8|32/3|16|64/3",2,"Luas = ∫₀⁴ (4x − x²) dx = 32 − 64/3 = 32/3."],
+["M","15% dari 240 adalah ...","32|34|36|38|40",2,"0,15 × 240 = 36."],
+["S","Rata-rata 6 bilangan adalah 7. Setelah ditambah satu bilangan, rata-rata menjadi 8. Bilangan itu adalah ...","10|12|14|15|16",2,"Jumlah awal 42; jumlah baru 7·8 = 56; bilangan = 14."],
+["H","Pada kubus ABCD.EFGH, tangen sudut antara diagonal ruang AG dan bidang alas ABCD adalah ...","√2/2|√3/3|√2|√3|1/2",0,"Dengan rusuk a: GC = a, AC = a√2, tan θ = GC/AC = 1/√2 = √2/2."],
+["S","A = [[1, 2], [3, 4]] dan B = [[0, 1], [1, 0]]. Jumlah elemen diagonal utama AB = ...","4|5|6|7|8",1,"AB = [[2, 1], [4, 3]]; diagonal utama 2 + 3 = 5."],
+["X","x³ − 6x² + 11x − 6 = 0. Jumlah kuadrat akar-akarnya = ...","12|13|14|15|16",2,"Akar 1, 2, 3 karena (x−1)(x−2)(x−3). 1 + 4 + 9 = 14."],
+["H","Dari kantong 4 bola merah dan 6 putih diambil 2 bola berturut-turut tanpa pengembalian. Peluang keduanya merah = ...","1/15|2/15|4/25|1/5|2/5",1,"4/10 · 3/9 = 12/90 = 2/15."],
+["M","Peluang terambil kartu As dari 52 kartu bridge adalah ...","1/52|1/26|1/13|1/4|4/13",2,"4 As dari 52: 4/52 = 1/13."],
+["H","Garis singgung lingkaran x² + y² = 25 di titik (−3, 4) adalah ...","3x + 4y = 25|−3x + 4y = 25|3x − 4y = 25|4x + 3y = 25|−4x + 3y = 25",1,"Rumus x₁x + y₁y = r²: −3x + 4y = 25."],
+["S","Jarak titik (3, 4) ke garis 3x + 4y − 5 = 0 adalah ...","2|3|4|5|6",2,"|9 + 16 − 5|/√(9 + 16) = 20/5 = 4."],
+["X","|a| = 3, |b| = 4, dan sudut antara a dan b 60°. Nilai |a + b| = ...","√13|5|√37|√43|7",2,"|a + b|² = 9 + 16 + 2·3·4·½ = 37."],
+["S","Penyelesaian 2^(x+1) = 32 adalah x = ...","3|4|5|6|7",1,"2^(x+1) = 2⁵ → x + 1 = 5 → x = 4."],
+["H","²log(x + 1) + ²log(x − 1) = 3. Nilai x = ...","2|3|4|5|9",1,"²log(x² − 1) = 3 → x² − 1 = 8 → x = 3 (syarat x > 1)."],
+["M","Jumlah 10 suku pertama deret 2 + 5 + 8 + ... adalah ...","135|145|155|165|175",2,"a = 2, b = 3: S₁₀ = 5(2·2 + 9·3) = 5·31 = 155."],
+["H","(f∘g)(x) = x² + 4x + 5 dan g(x) = x + 2. Nilai f(3) = ...","5|8|10|13|17",2,"f(t) = (t−2)² + 4(t−2) + 5 = t² + 1. Maka f(3) = 10."],
+["X","Dari 10 kartu bernomor 1–10 diambil 3 kartu. Peluang jumlahnya genap = ...","1/3|2/5|1/2|3/5|2/3",2,"Genap: 3 genap C(5,3) = 10, atau 1 genap + 2 ganjil 5·C(5,2) = 50. Peluang 60/120 = 1/2."],
+["H","x² − px + 12 = 0 (p > 0) memiliki akar dengan selisih 1. Nilai p = ...","5|6|7|8|9",2,"(x₁ − x₂)² = p² − 48 = 1 → p = 7 (akar 3 dan 4)."],
+["X","∫₀¹ x²/(x³ + 1) dx = ...","ln 2|⅓ ln 2|½ ln 2|3 ln 2|ln 3",1,"u = x³ + 1, du = 3x² dx: ⅓ ln u dari 1 ke 2 = ⅓ ln 2."],
+["H","Sebuah koin dilempar 4 kali. Peluang muncul tepat 2 gambar = ...","1/4|5/16|3/8|7/16|1/2",2,"C(4,2)/2⁴ = 6/16 = 3/8."],
+["X","α dan β akar x² − 3x + 1 = 0. Nilai α³ + β³ = ...","9|15|18|21|27",2,"α + β = 3, αβ = 1: α³ + β³ = 27 − 3·1·3 = 18."],
+["X","Pada deret aritmetika S₅ = 40 dan S₁₀ = 155. Suku ke-8 = ...","20|21|22|23|25",3,"a + 2b = 8 dan 2a + 9b = 31 → b = 3, a = 2. U₈ = 2 + 21 = 23."]
+];
+// acak urutan pilihan sekali saat dimuat
+D.forEach(function(d){
+  var o=d[2].split("|"),c=o[d[3]];
+  for(var i=o.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=o[i];o[i]=o[j];o[j]=t}
+  d.o=o;d.k=o.indexOf(c);
+});
+var cur="all",bar=document.getElementById("bar"),list=document.getElementById("list");
+[["all","Semua (50)"],["M","Mudah"],["S","Sedang"],["H","Sulit"],["X","Sangat Sulit"]].forEach(function(f){
+  var b=document.createElement("button");b.textContent=f[1];b.dataset.f=f[0];b.onclick=function(){cur=f[0];draw()};bar.appendChild(b);
+});
+function draw(){
+  [].forEach.call(bar.children,function(b){b.className=b.dataset.f===cur?"on":""});
+  list.innerHTML="";
+  D.forEach(function(d,i){
+    if(cur!=="all"&&d[0]!==cur)return;
+    var q=document.createElement("section");q.className="q";
+    var h=document.createElement("h2");h.innerHTML="<span>"+(i+1)+".</span><span class='tag'>"+L[d[0]]+"</span>";
+    var p=document.createElement("p");p.style.margin="0 0 8px";p.textContent=d[1];
+    q.appendChild(h);q.appendChild(p);
+    d.o.forEach(function(t,k){
+      var o=document.createElement("button");o.className="o";o.textContent="ABCDE"[k]+". "+t;
+      o.onclick=function(){
+        if(q.classList.contains("done"))return;
+        q.classList.add("done");
+        q.querySelectorAll(".o")[d.k].classList.add("ok");
+        if(k!==d.k)o.classList.add("no");
+      };
+      q.appendChild(o);
+    });
+    var e=document.createElement("div");e.className="ex";
+    e.innerHTML="<b>Jawaban: "+"ABCDE"[d.k]+".</b> "+d[4].replace(/&/g,"&amp;").replace(/</g,"&lt;");
+    q.appendChild(e);list.appendChild(q);
+  });
+}
+draw();
+</script>
+</body>
+</html>
